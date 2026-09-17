@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --green: #2A9D6E;
+  --green-dark: #1d7a54;
+  --green-light: #e8f8f2;
+  --cream: #F7F7F5;
+  --yellow: #FCD34D;
+  --red: #ff3962;
+  --navy: #1B2B4B;
+  --navy2: #243352;
+  --navy3: #2d3f61;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--cream);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: var(--navy);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(27,43,75,0.15); border-radius: 10px; }
+
+@layer components {
+  .card {
+    @apply bg-white border border-black/[0.06] rounded-xl;
+  }
+  .btn-primary {
+    @apply bg-sida-green text-white rounded-lg px-4 py-2 text-sm font-medium hover:bg-sida-green-dark transition-colors;
+  }
+  .btn-secondary {
+    @apply bg-white border border-black/10 text-sida-navy rounded-lg px-4 py-2 text-sm font-medium hover:bg-sida-cream transition-colors;
+  }
+  .btn-danger {
+    @apply bg-sida-red text-white rounded-lg px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity;
+  }
+  .btn-ghost {
+    @apply text-sida-navy/60 hover:text-sida-navy hover:bg-black/5 rounded-lg px-3 py-2 text-sm transition-colors;
+  }
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+  .badge-green { @apply bg-sida-green-light text-sida-green; }
+  .badge-yellow { @apply bg-yellow-100 text-yellow-800; }
+  .badge-red { @apply bg-sida-red-light text-sida-red; }
+  .badge-gray { @apply bg-gray-100 text-gray-600; }
+  .badge-navy { @apply bg-sida-navy text-white; }
+  .input {
+    @apply w-full border border-black/10 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-sida-green/30 focus:border-sida-green transition-colors;
+  }
+  .select {
+    @apply w-full border border-black/10 rounded-lg px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-sida-green/30 focus:border-sida-green transition-colors appearance-none;
+  }
+  .label {
+    @apply block text-xs text-sida-navy/50 uppercase tracking-wide font-medium mb-1;
+  }
+  .table-header {
+    @apply text-xs text-sida-navy/40 uppercase tracking-wide font-medium;
+  }
+  .nav-item {
+    @apply flex items-center gap-2.5 px-4 py-2.5 rounded-lg text-sm text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer;
+  }
+  .nav-item-active {
+    @apply bg-sida-green/20 text-white border-l-2 border-sida-green rounded-l-none;
+  }
+  .stat-card {
+    @apply card p-5;
+  }
+  .ai-chip {
+    @apply inline-flex items-center gap-1.5 text-xs font-medium text-sida-green bg-sida-green-light px-2.5 py-1 rounded-full;
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes progress-bar {
+  0% { width: 8%; }
+  70% { width: 92%; }
+  100% { width: 8%; }
+}
+
+.animate-slide-in { animation: slide-in 0.25s ease forwards; }
+.animate-pulse-dot { animation: pulse-dot 2s ease-in-out infinite; }
+.animate-progress { animation: progress-bar 2s ease-in-out infinite; }
+
+.shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #fafafa 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
