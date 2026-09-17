@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Sida — Systems Integrated Data Accounting. AI Bookkeeper Platform.",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -15,7 +16,9 @@
     "lucide-react": "^0.383.0",
     "recharts": "^2.12.7",
     "date-fns": "^3.6.0",
-    "clsx": "^2.1.1"
+    "clsx": "^2.1.1",
+    "@anthropic-ai/sdk": "^0.126.0",
+    "zod": "^4.6.5"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.1",

@@ -55,6 +55,18 @@ npm install -g vercel
 vercel
 ```
 
+### Environment variables
+
+Document AI (`/api/parse-document`) calls the Claude API server-side. Set this in your Vercel project (Settings → Environment Variables):
+
+| Variable | Description |
+|----------|-------------|
+| `ANTHROPIC_API_KEY` | Your Anthropic API key. Get one at [console.anthropic.com](https://console.anthropic.com). Never exposed to the browser — read only inside `api/parse-document.js`. |
+
+Uploaded documents (image, PDF, or CSV, up to 4MB) are sent to Claude, which extracts vendor, line items, amounts, tax, and a suggested account, then the result is posted into AP bills, journal entries, and notifications automatically. Items under 90% confidence are flagged for manual review instead of auto-posted.
+
+Note: `npm run dev` (Vite) does not serve `/api` routes — use `vercel dev` locally, or test against a deployed preview, to exercise document parsing end to end.
+
 ## Project structure
 
 ```
@@ -106,8 +118,8 @@ vercel
 ## Next steps for production
 
 1. **Backend API** — Node.js/TypeScript REST + GraphQL
-2. **Document AI** — integrate Google Document AI or AWS Textract + Claude API for real OCR
-3. **Database** — PostgreSQL with event-sourced double-entry ledger
+2. **Document AI** — ✅ live via Claude API (`api/parse-document.js`); consider Google Document AI or AWS Textract for higher-volume OCR pre-processing
+3. **Database** — PostgreSQL with event-sourced double-entry ledger (currently in-memory client state, reset on refresh)
 4. **Banking** — Plaid API integration (read-only bank feeds)
 5. **POS** — Square, Clover, Toast, Lightspeed webhooks
 6. **Auth** — Auth0 or Clerk (owner / accountant / employee roles)

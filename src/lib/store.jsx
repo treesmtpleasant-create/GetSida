@@ -136,6 +136,90 @@ const initialState = {
   activePage: 'dashboard',
 }
 
+const BILL_DOC_TYPES = ['supplier_invoice', 'expense_receipt', 'capital_asset_invoice']
+
+function processDocument(state, { parsed, fileName }) {
+  const now = fmt(new Date())
+  const uid = () => `${Date.now()}_${Math.random().toString(36).slice(2, 7)}`
+  const isBill = BILL_DOC_TYPES.includes(parsed.documentType)
+  const autoApprove = parsed.confidence >= 90
+  const tax = parsed.taxAmount || 0
+  const net = parsed.totalAmount - tax
+
+  let vendors = state.vendors
+  let vendorId = null
+  if (parsed.vendorName) {
+    const existing = vendors.find(v => v.name.toLowerCase() === parsed.vendorName.toLowerCase())
+    if (existing) {
+      vendorId = existing.id
+      vendors = vendors.map(v => v.id === vendorId ? { ...v, balance: v.balance + (isBill ? parsed.totalAmount : 0), ytdSpend: v.ytdSpend + (isBill ? parsed.totalAmount : 0) } : v)
+    } else if (isBill) {
+      vendorId = `v_${uid()}`
+      vendors = [...vendors, { id: vendorId, name: parsed.vendorName, category: parsed.suggestedCategory || 'Other', terms: 'Net 30', email: '', phone: '', balance: parsed.totalAmount, ytdSpend: parsed.totalAmount }]
+    }
+  }
+
+  let apBills = state.apBills
+  if (isBill) {
+    apBills = [{
+      id: `bill_${uid()}`,
+      vendor: parsed.vendorName || 'Unknown vendor',
+      vendorId,
+      invoiceNo: parsed.invoiceNumber || fileName,
+      date: parsed.documentDate || now,
+      dueDate: parsed.dueDate || now,
+      amount: parsed.totalAmount,
+      tax,
+      net,
+      status: autoApprove ? 'approved' : 'pending_approval',
+      payMethod: null,
+      account: parsed.suggestedAccountId,
+      memo: parsed.summary,
+      lines: (parsed.lineItems || []).map(l => ({ desc: l.description, qty: l.quantity ?? 1, unit: l.unitPrice ?? l.total, total: l.total })),
+    }, ...apBills]
+  }
+
+  let journalEntries = state.journalEntries
+  if (autoApprove) {
+    const entries = isBill
+      ? [
+          { acct: parsed.suggestedAccountId, dr: net, cr: 0 },
+          ...(tax ? [{ acct: 'GST_PAY', dr: tax, cr: 0 }] : []),
+          { acct: 'AP', dr: 0, cr: parsed.totalAmount },
+        ]
+      : parsed.documentType === 'pos_export'
+      ? [
+          { acct: 'CASH', dr: parsed.totalAmount, cr: 0 },
+          { acct: 'REVENUE', dr: 0, cr: net },
+          ...(tax ? [{ acct: 'GST_PAY', dr: 0, cr: tax }] : []),
+        ]
+      : [
+          { acct: parsed.suggestedAccountId, dr: parsed.totalAmount, cr: 0 },
+          { acct: 'CASH', dr: 0, cr: parsed.totalAmount },
+        ]
+    journalEntries = [{
+      id: `je_${uid()}`,
+      date: now,
+      memo: parsed.summary,
+      source: 'Claude Document AI',
+      entries,
+      status: 'posted',
+      confidence: parsed.confidence,
+    }, ...journalEntries]
+  }
+
+  const notifications = [{
+    id: `n_${uid()}`,
+    type: autoApprove ? 'info' : 'approval',
+    title: autoApprove ? 'Document processed' : 'Document needs review',
+    desc: `${fileName}: ${parsed.summary}`,
+    time: 'Just now',
+    read: false,
+  }, ...state.notifications]
+
+  return { ...state, vendors, apBills, journalEntries, notifications }
+}
+
 function reducer(state, action) {
   switch(action.type) {
     case 'SET_PAGE': return { ...state, activePage: action.payload }
@@ -169,6 +253,7 @@ function reducer(state, action) {
     }
     case 'ADD_VENDOR': return { ...state, vendors: [...state.vendors, action.payload] }
     case 'ADD_BILL': return { ...state, apBills: [action.payload, ...state.apBills] }
+    case 'PROCESS_DOCUMENT': return processDocument(state, action.payload)
     default: return state
   }
 }
