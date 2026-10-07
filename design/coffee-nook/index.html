@@ -1,0 +1,702 @@
+<title>The Black Panel Nook</title>
+<meta name="description" content="Interior concept for a coffee-shop banquette nook: three ways to reuse the existing black board wall with frame, moulding or wainscot.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a designer's concept board. Before/after hero, then three option plates
+   (render + notes), then the recommended scheme as a spec sheet with an elevation. */
+:root{
+  --paper:#ECECE5;      /* stone, leaning green */
+  --card:#F5F4EF;
+  --ink:#1E2621;        /* charcoal-green */
+  --muted:#59625B;
+  --rule:#C9CDC3;
+  --forest:#2F4A3A;
+  --oxblood:#6E2A2D;
+  --brass:#87642A;
+  --chip-ring:rgba(30,38,33,.18);
+  --display:"IM Fell English", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --body:"Instrument Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#121714; --card:#19201C; --ink:#E5E1D5; --muted:#9BA49C; --rule:#2B352F;
+    --forest:#93B9A0; --oxblood:#DB8F8A; --brass:#CDA65E; --chip-ring:rgba(229,225,213,.2);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121714; --card:#19201C; --ink:#E5E1D5; --muted:#9BA49C; --rule:#2B352F;
+  --forest:#93B9A0; --oxblood:#DB8F8A; --brass:#CDA65E; --chip-ring:rgba(229,225,213,.2);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:40px 80px;display:flex;flex-direction:column;gap:72px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1.08}
+h1{font-size:clamp(46px,8vw,92px);letter-spacing:-.01em}
+h1 em{font-style:italic;color:var(--oxblood)}
+h2{font-size:clamp(32px,4.4vw,48px)}
+h3{font-size:clamp(26px,3vw,34px)}
+p{margin:0;max-width:66ch}
+.eyebrow,.label{font-family:var(--mono);font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.lede{font-size:clamp(18px,2vw,21px);line-height:1.5;max-width:58ch}
+header{display:flex;flex-direction:column;gap:20px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 28px;border-top:1px solid var(--rule);padding-top:14px}
+.meta div{display:flex;flex-direction:column;gap:2px}
+.meta b{font-weight:500;font-size:14px}
+section{display:flex;flex-direction:column;gap:28px}
+.sec-head{display:flex;flex-direction:column;gap:10px;border-top:2px solid var(--ink);padding-top:16px}
+
+/* Plates: renders always sit on their own dark mat, in either theme */
+.plate{margin:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.plate .img{aspect-ratio:1200/820;max-width:100%;background:#0d0b09;overflow:hidden;border-radius:2px}
+.plate .img > *{width:100%;height:100%;display:block;object-fit:cover}
+.plate figcaption{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px 48px}
+.cols > *{min-width:0}
+ul.plain{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+ul.plain li{padding-left:22px;position:relative}
+ul.plain li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:1px;background:var(--brass)}
+.keep li::before{background:var(--forest)}
+.pull{font-family:var(--display);font-style:italic;font-size:clamp(22px,2.6vw,28px);line-height:1.3;color:var(--forest);max-width:40ch}
+
+/* Option plates */
+.option{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(0,1fr);gap:28px 40px;align-items:start;padding-top:28px;border-top:1px solid var(--rule)}
+.option .txt{display:flex;flex-direction:column;gap:16px}
+.option .tag{display:inline-flex;align-items:center;gap:8px}
+.badge{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border:1px solid var(--oxblood);color:var(--oxblood);border-radius:2px}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;font-size:14px;margin:0}
+.facts dt{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.facts dd{margin:0}
+.meter{font-family:var(--mono);letter-spacing:.15em;color:var(--brass)}
+.meter i{font-style:normal;opacity:.28}
+
+/* Palette chips */
+.chips{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.chip{display:flex;flex-direction:column;gap:8px;min-width:0}
+.chip .sw{aspect-ratio:4/3;border-radius:2px;box-shadow:inset 0 0 0 1px var(--chip-ring)}
+.chip b{font-weight:600;font-size:15px}
+.chip span{font-size:13px;color:var(--muted);line-height:1.45}
+.chip code{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+
+/* Spec table */
+.tbl{overflow-x:auto;border-top:1px solid var(--ink)}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14.5px}
+th,td{text-align:left;vertical-align:top;padding:12px 14px 12px 0;border-bottom:1px solid var(--rule)}
+th{font-family:var(--mono);font-size:11.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+td:first-child{font-weight:600;white-space:nowrap}
+td .dim{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums}
+
+.elev{overflow-x:auto;background:var(--card);border:1px solid var(--rule);padding:16px}
+.elev svg{display:block;width:100%;min-width:560px;height:auto}
+.elev text{font-family:var(--mono);font-size:12px;fill:var(--ink)}
+
+.layers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.layer{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--rule);padding-top:12px;min-width:0}
+.layer b{font-family:var(--display);font-weight:400;font-size:22px}
+.layer .k{font-family:var(--mono);font-size:12px;color:var(--brass)}
+.layer p{font-size:14.5px}
+
+ol.steps{margin:0;padding-left:1.4em;display:flex;flex-direction:column;gap:10px;max-width:72ch}
+ol.steps li::marker{font-family:var(--mono);color:var(--brass)}
+.note{font-size:13.5px;color:var(--muted);max-width:80ch}
+a{color:var(--forest)}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+
+@media (max-width:860px){
+  .ba,.cols,.option{grid-template-columns:1fr}
+  .chips,.layers{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:440px){
+  .chips{grid-template-columns:1fr 1fr;gap:14px}
+  .layers{grid-template-columns:1fr}
+}
+</style>
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">Interior concept · Banquette nook · Rev A · 7 Oct 2026</span>
+  <h1>The Black <em>Panel</em> Nook</h1>
+  <p class="lede">Three ways to make the existing black board wall the heart of an old-world neighbourhood café. The panels, bench carcasses, sconces and forest murals all stay. What changes is everything around them: colour, pattern, art, and a lower, warmer light.</p>
+  <div class="meta">
+    <div><span class="label">Scope</span><b>One banquette nook, approx. 10′ wide</b></div>
+    <div><span class="label">Keep</span><b>Black boards · oak benches · brass fittings</b></div>
+    <div><span class="label">Recommended</span><b>Option C, The Settle Back</b></div>
+  </div>
+</header>
+
+<div class="ba">
+  <figure class="plate">
+    <div class="img"><img src="existing-nook.jpg" alt="The nook as it is today: black vertical board wall, white walls with black-and-white forest murals, oak benches with round cushions, two black stump tables."></div>
+    <figcaption><span>Existing</span><span>White trim, hard bench backs</span></figcaption>
+  </figure>
+  <figure class="plate">
+    <div class="img" id="hero-render" role="img" aria-label="Concept render of Option C: green walls, oxblood ceiling, walnut wainscot and ledge below the black boards, a large gilt-framed landscape, burgundy seat cushions and marble bistro tables."></div>
+    <figcaption><span>Proposed · Option C</span><span>Concept render, not to scale</span></figcaption>
+  </figure>
+</div>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">The idea</span>
+    <h2>The black wall is already the best thing in the room</h2>
+  </div>
+  <div class="cols">
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <p>Right now the board wall reads as a dark hole because everything around it is bright white. Surround it with deep colour and it becomes a rich, glossy ground that makes brass, walnut, gilt and candlelight glow. That is the old-world café trick: dark rooms that feel warm because every surface catches a little light.</p>
+      <p class="pull">Colour-drench the frame, keep the black, and let wood and brass do the warming.</p>
+    </div>
+    <div class="cols" style="gap:24px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span class="label">Stays</span>
+        <ul class="plain keep">
+          <li>Black vertical board wall</li>
+          <li>Oak bench carcasses</li>
+          <li>Brass sconces and picture light</li>
+          <li>Forest toile mural panels</li>
+          <li>Plank floor and the olive tree</li>
+        </ul>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span class="label">Changes in every option</span>
+        <ul class="plain">
+          <li>Walls, trim and crown drenched in deep green</li>
+          <li>Ceiling painted oxblood</li>
+          <li>Continuous upholstered seats replace the round pads</li>
+          <li>Marble bistro tables at a usable height</li>
+          <li>Pleated shades, art, books, layered textiles</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Three options for the panel wall</span>
+    <h2>Frame it, panel it, or wainscot it</h2>
+    <p>Each option works over the existing boards without removing them. Room colours, tables and lighting are shared; the wall treatment and the bench back change.</p>
+  </div>
+
+  <article class="option" id="opt-a">
+    <figure class="plate">
+      <div class="img" id="render-a" role="img" aria-label="Option A render: a wide walnut and gilt frame around the black boards holding a salon hang of vintage paintings, with oxblood leather bolsters along the bench."></div>
+      <figcaption><span>Option A</span><span>Concept render</span></figcaption>
+    </figure>
+    <div class="txt">
+      <span class="eyebrow">Option A</span>
+      <h3>The Gallery Frame</h3>
+      <p>A wide walnut moulding with a gilt inner bead runs around the black field like one enormous picture frame. Inside it, a salon hang of vintage oils, small portraits and botanicals in mixed frames. The black boards become the gallery wall colour. Oxblood leather bolsters run along the bench backs.</p>
+      <ul class="plain">
+        <li>4½″ walnut frame moulding, ½″ gilt bead, mitred corners; bottom rail at 40″ above floor</li>
+        <li>7 to 9 vintage or local-artist pieces, mixed gilt, black and wood frames, 2–3″ apart</li>
+        <li>8″ round oxblood leather bolsters; ochre velvet seat cushions</li>
+      </ul>
+      <dl class="facts">
+        <dt>Best for</dt><dd>The most personality per dollar. Art can rotate and be sold off the wall.</dd>
+        <dt>Watch for</dt><dd>Plan the hang on paper first and use security hangers; this is a public room.</dd>
+        <dt>Cost</dt><dd><span class="meter" aria-label="Moderate">●●<i>●</i></span></dd>
+        <dt>Lead time</dt><dd>2–3 weeks, mostly art sourcing</dd>
+      </dl>
+    </div>
+  </article>
+
+  <article class="option" id="opt-b">
+    <figure class="plate">
+      <div class="img" id="render-b" role="img" aria-label="Option B render: tone-on-tone black picture-frame moulding boxes applied over the black boards in three bays, a chair rail, one large oil painting under a brass picture light, and a navy velvet channel back cushion."></div>
+      <figcaption><span>Option B</span><span>Concept render</span></figcaption>
+    </figure>
+    <div class="txt">
+      <span class="eyebrow">Option B</span>
+      <h3>The Panelled Study</h3>
+      <p>Applied moulding boxes, finished in the same black as the boards, turn the wall into traditional panelling. Tone on tone, it only reveals itself in raking light, which is exactly what makes it feel expensive. One large oil painting hangs in the centre bay under the brass picture light. A navy velvet channel back runs the full U.</p>
+      <ul class="plain">
+        <li>Three bays (wider centre), chair rail at 38″, ogee or bolection panel moulding</li>
+        <li>Moulding in the same species as the boards, ebonized to match the grain</li>
+        <li>Navy velvet channel-tufted back cushions; burgundy check seat cushions</li>
+      </ul>
+      <dl class="facts">
+        <dt>Best for</dt><dd>The calmest, most timeless result. Looks original to the building.</dd>
+        <dt>Watch for</dt><dd>Finish match. The boards show grain through the black, so painted MDF moulding would read as a patch. Sample on an offcut first.</dd>
+        <dt>Cost</dt><dd><span class="meter" aria-label="Moderate">●●<i>●</i></span></dd>
+        <dt>Lead time</dt><dd>2–3 weeks</dd>
+      </dl>
+    </div>
+  </article>
+
+  <article class="option" id="opt-c">
+    <figure class="plate">
+      <div class="img" id="render-c" role="img" aria-label="Option C render: walnut raised-panel wainscot behind the bench up to a ledge with books and a candle, black boards above with a large gilt-framed landscape and picture light, burgundy seat cushions and mixed-pattern scatter cushions."></div>
+      <figcaption><span>Option C</span><span>Concept render</span></figcaption>
+    </figure>
+    <div class="txt">
+      <span class="tag"><span class="eyebrow">Option C</span><span class="badge">Recommended</span></span>
+      <h3>The Settle Back</h3>
+      <p>A walnut-stained raised-panel wainscot rises behind the bench to 48″ and is capped with a deep ledge for books, small prints and a candle. The black boards above become the backdrop for one large landscape in a gilt frame. Mixed-pattern cushions lean against the panelling, like the high-backed settle in an old coaching inn.</p>
+      <ul class="plain">
+        <li>Oak raised-panel wainscot, stained to match the benches, seat to 48″</li>
+        <li>5″ deep ledge with a ½″ lip; matching 36″ wainscot under the side murals</li>
+        <li>Burgundy velvet seats; navy, green, ochre and tapestry scatter cushions</li>
+      </ul>
+      <dl class="facts">
+        <dt>Best for</dt><dd>Comfort and wear. Guests lean on wood, not on the black finish, and the bench and wall finally read as one piece of joinery.</dd>
+        <dt>Watch for</dt><dd>Highest joinery cost. Fix ledge objects with museum putty or keep them heavy.</dd>
+        <dt>Cost</dt><dd><span class="meter" aria-label="Higher">●●●</span></dd>
+        <dt>Lead time</dt><dd>4–6 weeks for custom millwork</dd>
+      </dl>
+    </div>
+  </article>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Why C</span>
+    <h2>The option people will stay longest in</h2>
+  </div>
+  <div class="cols">
+    <p>A coffee shop nook succeeds when people settle in with a second cup. Today guests sit on hard oak and lean back against painted boards, so they perch. The settle back gives a real backrest, puts warm wood at shoulder height where your eye lands when you sit, and protects the black finish from the scuffs and hair oil that will otherwise show within months. The ledge adds the lived-in layer of books and objects that makes a café feel like someone's sitting room.</p>
+    <p>A and B are strong fallbacks. If budget is tight, A delivers the most character for the least joinery and can grow over time. B is the right call if the owners want the quietest, most architectural version. Both can be upgraded to C later, since the wainscot sits below the frame and moulding zones.</p>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Colour &amp; material</span>
+    <h2>Palette</h2>
+    <p class="note">Paint references are suggestions with approximate screen colour. Confirm with physical samples under the shop's own lighting, at night.</p>
+  </div>
+  <div class="chips">
+    <div class="chip"><div class="sw" style="background:#56645A"></div><b>Deep forest</b><span>Walls, trim, crown and mural surrounds, all one colour. Eggshell.</span><code>F&amp;B Green Smoke No. 47 · go darker with Studio Green No. 93</code></div>
+    <div class="chip"><div class="sw" style="background:#5C2A2D"></div><b>Oxblood</b><span>Ceiling, the fifth wall. Gloss only if the plaster is smooth.</span><code>F&amp;B Preference Red No. 297</code></div>
+    <div class="chip"><div class="sw" style="background:#1B1A19"></div><b>Existing black</b><span>Board wall, untouched. Any new moulding is matched to it.</span><code>Match on site</code></div>
+    <div class="chip"><div class="sw" style="background:#6B4429"></div><b>Walnut stain</b><span>Wainscot, ledge and frame. Matched to the existing benches.</span><code>Sample on oak offcut</code></div>
+    <div class="chip"><div class="sw" style="background:#2F3D4B"></div><b>Navy</b><span>Scatter cushions, café curtain trim, book spines.</span><code>F&amp;B Hague Blue No. 30</code></div>
+    <div class="chip"><div class="sw" style="background:linear-gradient(135deg,#C9A35C,#8A6A2C 60%,#B48F49)"></div><b>Aged brass</b><span>Sconces, picture light, table bases, curtain rod. Unlacquered so it darkens.</span><code>Living finish</code></div>
+    <div class="chip"><div class="sw" style="background:linear-gradient(118deg,transparent 38%,rgba(218,186,176,.55) 40%,transparent 42%),linear-gradient(140deg,transparent 62%,rgba(218,186,176,.35) 63%,transparent 64.5%),linear-gradient(120deg,#6E2E2C,#8B4A44 40%,#5E2525 70%,#7A3A35)"></div><b>Rosso Levanto</b><span>Honed marble table tops. Burgundy with pale veining hides coffee rings.</span><code>Honed, sealed</code></div>
+    <div class="chip"><div class="sw" style="background:#B8823A"></div><b>Ochre linen</b><span>Pleated sconce shades and one velvet accent.</span><code>Lined, flame-retardant</code></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Recommended scheme · Option C</span>
+    <h2>Back wall elevation</h2>
+  </div>
+  <div class="elev"><svg id="elevation" viewBox="0 0 1060 700" role="img" aria-label="Front elevation of Option C with dimensions: bench seat at 18 inches, wainscot and ledge at 48 inches, painting 40 by 32 inches, picture light 30 inches, ceiling approximately 9 feet 6 inches."></svg></div>
+  <p class="note">Dimensions are design intent. Field-verify the wall width, ceiling height and bench depth before shop drawings.</p>
+
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Item</th><th>Specification</th><th>Size</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Wainscot</td><td>Rift oak frame-and-panel, raised fields, stained walnut to match benches, satin lacquer</td><td><span class="dim">18″ → 48″ AFF</span></td><td>Fixed to cleats screwed through the boards into studs</td></tr>
+        <tr><td>Ledge cap</td><td>Solid oak, eased edges, ½″ raised lip at front</td><td><span class="dim">5″ deep × 1¼″</span></td><td>Holds books, prints, candle; continues as 3″ cap on side walls</td></tr>
+        <tr><td>Side wainscot</td><td>Same detail under the mural panels, both side walls</td><td><span class="dim">18″ → 36″ AFF</span></td><td>Mural panels untouched; surround painted green</td></tr>
+        <tr><td>Seat cushion</td><td>Continuous, boxed, burgundy performance velvet, high-resilience foam</td><td><span class="dim">2½″ thick</span></td><td>40,000+ Martindale; zip covers for cleaning</td></tr>
+        <tr><td>Scatter cushions</td><td>Mixed: navy paisley, green velvet, ochre stripe, wool tapestry</td><td><span class="dim">18″ × 18″, 12″ × 20″</span></td><td>Commercial-rated; keep two spare sets</td></tr>
+        <tr><td>Tables</td><td>Round, honed Rosso Levanto marble, aged-brass and cast-iron pedestal</td><td><span class="dim">24″ Ø × 28″ H</span></td><td>Replaces low stump tables; laptop and cup height for an 18″ bench</td></tr>
+        <tr><td>Chairs</td><td>Vintage bentwood café chairs, dark stain, on the open side</td><td><span class="dim">18″ seat</span></td><td>Mix two or three styles</td></tr>
+        <tr><td>Artwork</td><td>One large landscape oil, period or in-period style, carved gilt frame</td><td><span class="dim">≈ 40″ × 32″</span></td><td>Bottom of frame 60″ AFF; security hangers</td></tr>
+        <tr><td>Picture light</td><td>Existing, or swap to a longer aged-brass bar</td><td><span class="dim">30″</span></td><td>Reuse the existing box at the top of the panel</td></tr>
+        <tr><td>Sconces</td><td>Existing brass; new pleated ochre linen shades</td><td><span class="dim">Match current</span></td><td>Warm-dim lamps, see lighting</td></tr>
+        <tr><td>Café curtain</td><td>Lower half of the window, burgundy and ochre check linen on brass rod</td><td><span class="dim">Sill → mid-sash</span></td><td>Privacy for the window seat without losing daylight</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Lighting</span>
+    <h2>Four layers, all warm, all on dimmers</h2>
+    <p>Dark colours only feel cozy when the light is low, warm and coming from many small sources. Avoid ceiling downlights over the nook entirely.</p>
+  </div>
+  <div class="layers">
+    <div class="layer"><span class="k">2700K → 2200K warm-dim</span><b>Sconces</b><p>Existing brass arms with pleated ochre shades. The shade colour tints the light amber and hides the bulb from seated eye level.</p></div>
+    <div class="layer"><span class="k">2700K · CRI 95+</span><b>Picture light</b><p>Over the painting. High colour rendering keeps the gilt and oil colours honest against the black.</p></div>
+    <div class="layer"><span class="k">2200K LED tape</span><b>Under the ledge</b><p>A concealed strip under the ledge lip washes down over the cushions and wainscot. Low-voltage driver, installed by a licensed electrician.</p></div>
+    <div class="layer"><span class="k">Cordless, rechargeable</span><b>Table lamps</b><p>Small brass and ribbed-glass lamps on each table. No cords to trip on; charge them at close.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Working over the existing boards</span>
+    <h2>Installation notes</h2>
+  </div>
+  <div class="cols">
+    <ul class="plain">
+      <li><b>Bridge the grooves.</b> Anywhere a moulding, frame or ledge crosses a V-groove, fill the groove behind it with a slip of wood or black-tinted filler so the piece beds flat and no light shows under it.</li>
+      <li><b>Find real fixing.</b> Confirm what is behind the boards (studs, plywood or furring). Frames and ledges screw through the boards into backing; adhesive alone is not enough for a ledge people lean on.</li>
+      <li><b>Match the black.</b> The boards are stained wood with visible grain. New moulding for Option B should be the same species, ebonized and sheen-matched. Test on an offcut at night under the sconces.</li>
+    </ul>
+    <ul class="plain">
+      <li><b>Keep it reversible.</b> Screw and plug rather than glue. If the café changes later, the black wall comes back with only filled holes.</li>
+      <li><b>Code check.</b> Commercial upholstery and wall-applied finishes need to meet the local fire code. Ask suppliers for flammability certificates with every fabric.</li>
+      <li><b>Protect the black.</b> In A and B, mount the bolsters or back cushions so heads and shoulders never rub the board finish.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="sec-head">
+    <span class="eyebrow">Next steps</span>
+    <h2>From concept to install</h2>
+  </div>
+  <ol class="steps">
+    <li>Owners choose a direction (A, B or C) and confirm the room palette.</li>
+    <li>Site measure; open one board edge or use a stud finder to confirm backing.</li>
+    <li>Paint drawdowns of the green and oxblood viewed in the space at night; stain samples on oak offcuts against the benches.</li>
+    <li>Millwork shop drawings and quote; order fabric and marble tops (both carry the longest lead times).</li>
+    <li>Start sourcing art and ledge objects now: estate sales, vintage dealers, and local painters.</li>
+    <li>Install in one closure window: paint first, then millwork, then electrical, then upholstery and styling.</li>
+  </ol>
+</section>
+
+</div>
+
+<script>
+(function(){
+  // One-point perspective. World units in cm: X across (0 = centre), Y up from floor, Z out from the back wall.
+  var EYE=140, CAM=500, F=1000, CX=600, HZ=410;
+  function sc(Z){return F/(CAM-Z);}
+  function P(X,Y,Z){var k=sc(Z);return [CX+X*k, HZ-(Y-EYE)*k];}
+  function f(n){return Math.round(n*10)/10;}
+  function pts(a){return a.map(function(p){var q=P(p[0],p[1],p[2]);return f(q[0])+','+f(q[1]);}).join(' ');}
+  function poly(a,fill,x){return '<polygon points="'+pts(a)+'" fill="'+fill+'" '+(x||'')+'/>';}
+  function rZ(x0,x1,y0,y1,Z,fill,x){return poly([[x0,y0,Z],[x1,y0,Z],[x1,y1,Z],[x0,y1,Z]],fill,x);}
+  function rX(X,z0,z1,y0,y1,fill,x){return poly([[X,y0,z0],[X,y0,z1],[X,y1,z1],[X,y1,z0]],fill,x);}
+  function box(x0,x1,y0,y1,z0,z1,c){
+    var o='';
+    if(x1<=0) o+=poly([[x1,y0,z0],[x1,y0,z1],[x1,y1,z1],[x1,y1,z0]],c.side);
+    if(x0>=0) o+=poly([[x0,y0,z0],[x0,y0,z1],[x0,y1,z1],[x0,y1,z0]],c.side);
+    if(y1<EYE) o+=poly([[x0,y1,z0],[x1,y1,z0],[x1,y1,z1],[x0,y1,z1]],c.top);
+    o+=poly([[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]],c.front);
+    return o;
+  }
+  function hEll(X,Y,Z,r,fill,x){
+    var a=P(X,Y,Z-r),b=P(X,Y,Z+r);
+    return '<ellipse cx="'+f((a[0]+b[0])/2)+'" cy="'+f((a[1]+b[1])/2)+'" rx="'+f(r*sc(Z))+'" ry="'+f(Math.abs(b[1]-a[1])/2)+'" fill="'+fill+'" '+(x||'')+'/>';
+  }
+  function line(a,b,stroke,w,x){var p=P.apply(null,a),q=P.apply(null,b);return '<line x1="'+f(p[0])+'" y1="'+f(p[1])+'" x2="'+f(q[0])+'" y2="'+f(q[1])+'" stroke="'+stroke+'" stroke-width="'+w+'" '+(x||'')+'/>';}
+  function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;var t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+  // Back wall (Z=0) is a flat plane at scale 2: screen = (600+2X, 690-2Y)
+  function B(X,Y){return [CX+2*X, 690-2*Y];}
+
+  var C={
+    wall:'#4E5D51', wallHi:'#5F6F62', crown:'#64756A', ceil:'#4A2225',
+    black:'#1B1A19', black2:'#201E1C', groove:'#090909',
+    benchTop:'#74502F', benchFront:'#5C3D24', benchSide:'#4A311D',
+    floor:'#563620', plank:'#3B2415'
+  };
+
+  function art(id,X0,X1,Y0,Y1,kind,frame){
+    var a=B(X0,Y1), w=2*(X1-X0), h=2*(Y1-Y0);
+    var fw=Math.max(6,Math.min(w,h)*0.085);
+    var fr={gilt:['#A8823A','#D9B76E'],wood:['#4B2E1A','#B08A44'],black:['#0F0E0D','#B8913F']}[frame];
+    var o='<rect x="'+f(a[0]+4)+'" y="'+f(a[1]+6)+'" width="'+f(w)+'" height="'+f(h)+'" fill="#000" opacity=".55"/>';
+    o+='<rect x="'+f(a[0])+'" y="'+f(a[1])+'" width="'+f(w)+'" height="'+f(h)+'" fill="'+fr[0]+'"/>';
+    o+='<rect x="'+f(a[0]+fw*0.35)+'" y="'+f(a[1]+fw*0.35)+'" width="'+f(w-fw*0.7)+'" height="'+f(h-fw*0.7)+'" fill="none" stroke="'+fr[1]+'" stroke-width="'+f(Math.max(1,fw*0.12))+'" opacity=".8"/>';
+    var ix=a[0]+fw, iy=a[1]+fw, iw=w-2*fw, ih=h-2*fw;
+    var s='<svg x="'+f(ix)+'" y="'+f(iy)+'" width="'+f(iw)+'" height="'+f(ih)+'" viewBox="0 0 100 100" preserveAspectRatio="none">';
+    if(kind==='land'){
+      s+='<rect width="100" height="100" fill="#B9A77C"/><rect width="100" height="40" fill="#8E9A8B" opacity=".7"/>'+
+         '<circle cx="30" cy="42" r="16" fill="#E8D29E" opacity=".55"/>'+
+         '<polygon points="0,60 18,47 40,56 66,42 100,54 100,100 0,100" fill="#5A6650"/>'+
+         '<polygon points="0,76 28,68 58,79 100,70 100,100 0,100" fill="#2F3322"/>'+
+         '<rect x="73" y="52" width="2.4" height="22" fill="#1E1A12"/><ellipse cx="74" cy="47" rx="11" ry="15" fill="#27311F"/>'+
+         '<ellipse cx="86" cy="58" rx="7" ry="10" fill="#323B26"/><rect width="100" height="100" fill="#3A2A12" opacity=".18"/>';
+    } else if(kind==='sea'){
+      s+='<rect width="100" height="100" fill="#7F8B95"/><rect y="48" width="100" height="10" fill="#CDB98F" opacity=".8"/>'+
+         '<rect y="58" width="100" height="42" fill="#2C3D4F"/><polygon points="60,57 64,40 64,57" fill="#E6DCC3"/><polygon points="56,58 70,58 68,61 58,61" fill="#1C1A17"/>';
+    } else if(kind==='portrait'){
+      s+='<rect width="100" height="100" fill="#2B231D"/><ellipse cx="50" cy="104" rx="40" ry="34" fill="#121212"/>'+
+         '<rect x="44" y="58" width="12" height="14" fill="#B58C6A"/><ellipse cx="50" cy="45" rx="15" ry="19" fill="#C39A76"/>'+
+         '<ellipse cx="50" cy="34" rx="17" ry="12" fill="#3A2416"/><polygon points="40,76 50,86 60,76" fill="#E7DFCB"/>';
+    } else if(kind==='still'){
+      s+='<rect width="100" height="100" fill="#1D1915"/><rect y="72" width="100" height="28" fill="#4A2E1B"/>'+
+         '<ellipse cx="34" cy="54" rx="13" ry="19" fill="#7C8A83"/><rect x="30" y="30" width="8" height="8" fill="#7C8A83"/>'+
+         '<circle cx="62" cy="66" r="8" fill="#B5532B"/><circle cx="75" cy="68" r="7" fill="#C9A23B"/><circle cx="53" cy="70" r="5" fill="#6B2A2A"/>';
+    } else if(kind==='bot'){
+      s+='<rect width="100" height="100" fill="#E4DBC3"/><path d="M50 95 C48 70 53 45 50 18" stroke="#4D5E3F" stroke-width="2" fill="none"/>'+
+         '<ellipse cx="38" cy="62" rx="12" ry="5" fill="#5F7550" transform="rotate(-25 38 62)"/><ellipse cx="62" cy="50" rx="12" ry="5" fill="#5F7550" transform="rotate(25 62 50)"/>'+
+         '<ellipse cx="40" cy="38" rx="9" ry="4" fill="#6E8560" transform="rotate(-30 40 38)"/><circle cx="50" cy="17" r="7" fill="#8A2F35"/>';
+    }
+    s+='</svg>';
+    return o+s;
+  }
+
+  function pictureLight(id,X,Y,len){
+    var a=B(X-len/2,Y), b=B(X+len/2,Y);
+    var o='<polygon points="'+f(a[0])+','+f(a[1]+6)+' '+f(b[0])+','+f(b[1]+6)+' '+f(b[0]+50)+','+f(b[1]+190)+' '+f(a[0]-50)+','+f(a[1]+190)+'" fill="url(#'+id+'-wash)"/>';
+    o+='<rect x="'+f(CX+2*X-3)+'" y="'+f(a[1]-14)+'" width="6" height="16" fill="#6B5226"/>';
+    o+='<rect x="'+f(a[0])+'" y="'+f(a[1])+'" width="'+f(b[0]-a[0])+'" height="9" rx="3" fill="url(#'+id+'-brass)"/>';
+    return o;
+  }
+
+  function sconce(id,side,Z){
+    var X=side*150, k=sc(Z), wp=P(X,205,Z), ap=P(X-side*16,212,Z), ks=sc(Z);
+    var o='<circle cx="'+f(ap[0])+'" cy="'+f(ap[1]+6*ks)+'" r="'+f(90*ks)+'" fill="url(#'+id+'-glow)"/>';
+    o+='<rect x="'+f(wp[0]-2*k)+'" y="'+f(wp[1]-9*k)+'" width="'+f(4*k)+'" height="'+f(18*k)+'" fill="#7A5C2A"/>';
+    o+='<line x1="'+f(wp[0])+'" y1="'+f(wp[1])+'" x2="'+f(ap[0])+'" y2="'+f(ap[1])+'" stroke="#9C7A3C" stroke-width="'+f(1.2*k)+'"/>';
+    var tw=6*ks, bw=9.5*ks, top=ap[1]-4*ks, bot=ap[1]+14*ks;
+    o+='<polygon points="'+f(ap[0]-tw)+','+f(top)+' '+f(ap[0]+tw)+','+f(top)+' '+f(ap[0]+bw)+','+f(bot)+' '+f(ap[0]-bw)+','+f(bot)+'" fill="url(#'+id+'-shade)"/>';
+    for(var i=-3;i<=3;i++){o+='<line x1="'+f(ap[0]+i*tw/3.6)+'" y1="'+f(top)+'" x2="'+f(ap[0]+i*bw/3.6)+'" y2="'+f(bot)+'" stroke="#7E4A1E" stroke-width=".8" opacity=".55"/>';}
+    return o;
+  }
+
+  function mural(id,side){
+    var X=side*150, z0=18, z1=205, y0=108, y1=270, r=rng(side>0?7:3), o='';
+    var cid=id+'-mur'+(side>0?'r':'l');
+    o+='<clipPath id="'+cid+'"><polygon points="'+pts([[X,y0,z0],[X,y0,z1],[X,y1,z1],[X,y1,z0]])+'"/></clipPath>';
+    o+=rX(X,z0-5,z1+5,y0-5,y1+5,C.wallHi);
+    o+=rX(X,z0,z1,y0,y1,'#D8D1BF');
+    o+='<g clip-path="url(#'+cid+')">';
+    for(var i=0;i<22;i++){
+      var z=z0+r()*(z1-z0), hgt=60+r()*110, k=sc(z), base=P(X,y0,z), topp=P(X,y0+hgt,z);
+      var tone=['#3B3B36','#55554E','#6F6E66'][Math.floor(r()*3)];
+      o+='<line x1="'+f(base[0])+'" y1="'+f(base[1])+'" x2="'+f(topp[0])+'" y2="'+f(topp[1])+'" stroke="'+tone+'" stroke-width="'+f(1.3*k)+'"/>';
+      for(var j=0;j<5;j++){
+        var yy=y0+hgt*(0.45+r()*0.6), zz=z+(r()-.5)*14, c=P(X,yy,zz), kk=sc(zz), rr=5+r()*8;
+        o+='<ellipse cx="'+f(c[0])+'" cy="'+f(c[1])+'" rx="'+f(rr*kk*0.45)+'" ry="'+f(rr*kk*0.75)+'" fill="'+tone+'" opacity=".55"/>';
+      }
+    }
+    o+='</g>';
+    return o;
+  }
+
+  function scene(id,opt){
+    var o='<svg viewBox="0 0 1200 820" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">';
+    o+='<defs>'+
+      '<linearGradient id="'+id+'-ceil" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3A1A1C"/><stop offset="1" stop-color="#6A3134"/></linearGradient>'+
+      '<linearGradient id="'+id+'-floor" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3E2716"/><stop offset="1" stop-color="#6B4527"/></linearGradient>'+
+      '<linearGradient id="'+id+'-brass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E2C27E"/><stop offset=".5" stop-color="#A9853F"/><stop offset="1" stop-color="#6E5224"/></linearGradient>'+
+      '<linearGradient id="'+id+'-brassV" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6E5224"/><stop offset=".45" stop-color="#D2B06A"/><stop offset="1" stop-color="#5E451D"/></linearGradient>'+
+      '<linearGradient id="'+id+'-wash" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFD9A0" stop-opacity=".32"/><stop offset="1" stop-color="#FFD9A0" stop-opacity="0"/></linearGradient>'+
+      '<radialGradient id="'+id+'-glow"><stop offset="0" stop-color="#FFC27A" stop-opacity=".5"/><stop offset=".4" stop-color="#FFB060" stop-opacity=".16"/><stop offset="1" stop-color="#FFB060" stop-opacity="0"/></radialGradient>'+
+      '<linearGradient id="'+id+'-shade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C98A45"/><stop offset="1" stop-color="#F2C27E"/></linearGradient>'+
+      '<radialGradient id="'+id+'-marble" cx=".35" cy=".35"><stop offset="0" stop-color="#9A5A52"/><stop offset=".6" stop-color="#6E2E2C"/><stop offset="1" stop-color="#561F20"/></radialGradient>'+
+      '<linearGradient id="'+id+'-leather" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8C3A3A"/><stop offset=".35" stop-color="#6A2426"/><stop offset="1" stop-color="#3C1314"/></linearGradient>'+
+      '<linearGradient id="'+id+'-glass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#D9DED8"/><stop offset="1" stop-color="#9DA8A1"/></linearGradient>'+
+      '<radialGradient id="'+id+'-vig" cx=".5" cy=".45" r=".75"><stop offset=".55" stop-color="#0A0604" stop-opacity="0"/><stop offset="1" stop-color="#0A0604" stop-opacity=".55"/></radialGradient>'+
+      '<pattern id="'+id+'-check" width="14" height="14" patternUnits="userSpaceOnUse"><rect width="14" height="14" fill="#6E2A2D"/><rect width="7" height="14" fill="#C08A3E" opacity=".35"/><rect width="14" height="7" fill="#C08A3E" opacity=".35"/></pattern>'+
+      '<pattern id="'+id+'-stripe" width="8" height="8" patternUnits="userSpaceOnUse"><rect width="8" height="8" fill="#B8823A"/><rect width="3" height="8" fill="#7A4E1E"/></pattern>'+
+      '<pattern id="'+id+'-paisley" width="16" height="16" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#2F3D4B"/><circle cx="5" cy="5" r="2.5" fill="#B8823A" opacity=".7"/><circle cx="13" cy="12" r="2" fill="#8A2F35" opacity=".8"/></pattern>'+
+      '<pattern id="'+id+'-tap" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" fill="#5A3A2A"/><path d="M0 6 L6 0 L12 6 L6 12 Z" fill="#8A2F35" opacity=".8"/><circle cx="6" cy="6" r="1.6" fill="#C9A35C"/></pattern>'+
+    '</defs>';
+    o+='<rect width="1200" height="820" fill="#0D0B09"/>';
+
+    // Shell
+    o+=poly([[-150,290,0],[150,290,0],[150,290,300],[-150,290,300]],'url(#'+id+'-ceil)');
+    o+=rX(-150,0,300,0,290,C.wall)+rX(150,0,300,0,290,C.wall);
+    o+=poly([[-150,0,0],[150,0,0],[150,0,300],[-150,0,300]],'url(#'+id+'-floor)');
+    for(var px=-135;px<150;px+=15){o+=line([px,0,0],[px,0,300],C.plank,1.2);}
+    // crown
+    o+=rZ(-150,150,276,290,0,C.crown)+rZ(-150,150,276,278,0,'#3D4A40');
+    o+=rX(-150,0,300,276,290,C.crown)+rX(150,0,300,276,290,C.crown);
+    // back wall returns + black field
+    o+=rZ(-150,150,0,276,0,C.wall);
+    o+=rZ(-138,138,0,270,0,C.black);
+    var n=9, bw=276/n;
+    for(var i=0;i<n;i++){
+      var x0=-138+i*bw;
+      if(i%2) o+=rZ(x0,x0+bw,0,270,0,C.black2);
+      if(i>0) o+=rZ(x0-0.6,x0+0.6,0,270,0,C.groove);
+    }
+    var gr=rng(11);
+    for(var g=0;g<40;g++){var gx=-136+gr()*272;o+=line([gx,0,0],[gx,270,0],'#3A3632',0.6,'opacity="'+(0.25+gr()*0.3).toFixed(2)+'"');}
+    o+=rZ(-138,138,268,270,0,'#2C2926');
+
+    // Option-specific back wall
+    if(opt==='a'){
+      var fb=104, ft=262;
+      o+=rZ(-134,134,fb,ft,0,'#5A3A22');
+      o+=rZ(-125,125,fb+9,ft-9,0,C.black);
+      for(var i2=1;i2<n;i2++){var gx2=-138+i2*bw;if(gx2>-125&&gx2<125)o+=rZ(gx2-0.6,gx2+0.6,fb+9,ft-9,0,C.groove);}
+      o+=rZ(-126.5,126.5,ft-9,ft-7.5,0,'#C9A55E')+rZ(-126.5,126.5,fb+7.5,fb+9,0,'#C9A55E');
+      o+=rZ(-126.5,-125,fb+7.5,ft-7.5,0,'#C9A55E')+rZ(125,126.5,fb+7.5,ft-7.5,0,'#C9A55E');
+      o+=rZ(-134,134,ft-1.5,ft,0,'#7A5432');
+      o+=pictureLight(id,0,265,64);
+      o+=art(id,-44,44,150,212,'land','gilt');
+      o+=art(id,-118,-58,188,250,'portrait','black');
+      o+=art(id,-118,-62,122,178,'still','wood');
+      o+=art(id,58,118,196,250,'bot','gilt');
+      o+=art(id,62,116,124,186,'sea','wood');
+      o+=art(id,-28,28,220,248,'bot','black');
+      o+=art(id,-24,24,120,142,'still','gilt');
+    }
+    if(opt==='b'){
+      o+=rZ(-138,138,96,101,0,'#2A2724')+rZ(-138,138,95,96,0,'#3A3632')+rZ(-138,138,101,102,0,'#060606');
+      var bays=[[-130,-56],[-46,46],[56,130]];
+      bays.forEach(function(bb){
+        var a=B(bb[0],258), w=2*(bb[1]-bb[0]), h=2*(258-110);
+        o+='<rect x="'+f(a[0])+'" y="'+f(a[1])+'" width="'+f(w)+'" height="'+f(h)+'" fill="none" stroke="#3B3733" stroke-width="5"/>';
+        o+='<rect x="'+f(a[0]+4)+'" y="'+f(a[1]+4)+'" width="'+f(w-8)+'" height="'+f(h-8)+'" fill="none" stroke="#050505" stroke-width="3"/>';
+        o+='<rect x="'+f(a[0]+8)+'" y="'+f(a[1]+8)+'" width="'+f(w-16)+'" height="'+f(h-16)+'" fill="none" stroke="#2C2926" stroke-width="1.5"/>';
+      });
+      o+=pictureLight(id,0,240,60);
+      o+=art(id,-36,36,140,228,'land','gilt');
+    }
+    if(opt==='c'){
+      o+=pictureLight(id,0,246,70);
+      o+=art(id,-51,51,152,233,'land','gilt');
+      // wainscot frame and raised panels
+      o+=rZ(-150,150,46,122,0,'#5E3B22');
+      var pw=(292-6*6)/5;
+      for(var p=0;p<5;p++){
+        var px0=-146+6+p*(pw+6);
+        o+=rZ(px0,px0+pw,54,114,0,'#4E301B');
+        o+=rZ(px0+3,px0+pw-3,57,111,0,'#7C5032');
+        o+=rZ(px0+3,px0+pw-3,110,111,0,'#9A6A42');
+      }
+      // ledge
+      o+=box(-150,150,122,126,0,13,{top:'#93613A',front:'#5A3820',side:'#4A2E19'});
+      // ledge objects
+      function onLedge(X,Z){return P(X,126,Z);}
+      var lk=sc(6);
+      var books=[[-118,'#2F3D4B',20],[-114,'#6E2A2D',23],[-110.5,'#C08A3E',18],[-107.5,'#2F4A3A',22],[-104,'#3B2A1E',19]];
+      books.forEach(function(bk){var q=onLedge(bk[0],6);o+='<rect x="'+f(q[0])+'" y="'+f(q[1]-bk[2]*lk)+'" width="'+f(3.2*lk)+'" height="'+f(bk[2]*lk)+'" fill="'+bk[1]+'"/>';});
+      var q2=onLedge(-84,4);o+='<rect x="'+f(q2[0])+'" y="'+f(q2[1]-24*lk)+'" width="'+f(18*lk)+'" height="'+f(24*lk)+'" fill="#A8823A" transform="rotate(-4 '+f(q2[0])+' '+f(q2[1])+')"/><rect x="'+f(q2[0]+2.5*lk)+'" y="'+f(q2[1]-21.5*lk)+'" width="'+f(13*lk)+'" height="'+f(19*lk)+'" fill="#E4DBC3" transform="rotate(-4 '+f(q2[0])+' '+f(q2[1])+')"/>';
+      var q3=onLedge(82,6);o+='<ellipse cx="'+f(q3[0])+'" cy="'+f(q3[1]-6*lk)+'" rx="'+f(4*lk)+'" ry="'+f(6*lk)+'" fill="#3E4A3F"/><rect x="'+f(q3[0]-1*lk)+'" y="'+f(q3[1]-17*lk)+'" width="'+f(2*lk)+'" height="'+f(6*lk)+'" fill="#3E4A3F"/><path d="M'+f(q3[0])+' '+f(q3[1]-16*lk)+' q '+f(-6*lk)+' '+f(-10*lk)+' '+f(-4*lk)+' '+f(-18*lk)+' M'+f(q3[0])+' '+f(q3[1]-16*lk)+' q '+f(5*lk)+' '+f(-8*lk)+' '+f(6*lk)+' '+f(-15*lk)+'" stroke="#6E8560" stroke-width="1.6" fill="none"/>';
+      var q4=onLedge(104,6);o+='<circle cx="'+f(q4[0])+'" cy="'+f(q4[1]-14*lk)+'" r="'+f(30*lk)+'" fill="url(#'+id+'-glow)"/><rect x="'+f(q4[0]-2*lk)+'" y="'+f(q4[1]-12*lk)+'" width="'+f(4*lk)+'" height="'+f(12*lk)+'" fill="#E8DFC9"/><ellipse cx="'+f(q4[0])+'" cy="'+f(q4[1]-14.5*lk)+'" rx="'+f(1*lk)+'" ry="'+f(2.4*lk)+'" fill="#FFD27A"/><rect x="'+f(q4[0]-3.5*lk)+'" y="'+f(q4[1]-1.5*lk)+'" width="'+f(7*lk)+'" height="'+f(1.5*lk)+'" fill="#A9853F"/>';
+      // under-ledge wash
+      o+=rZ(-148,148,96,121,0,'#FFC27A','opacity=".12"');
+    }
+
+    // Side walls: mural panels, sconces, window
+    o+=mural(id,-1)+mural(id,1);
+    if(opt==='c'){
+      o+=rX(-150,0,232,46,92,'#5E3B22')+rX(-150,0,232,92,96,'#93613A');
+      o+=rX(150,0,232,46,92,'#5E3B22')+rX(150,0,232,92,96,'#93613A');
+    }
+    o+=sconce(id,-1,112)+sconce(id,1,112);
+    // window, left wall near the front
+    o+=rX(-150,238,300,60,268,'#141312');
+    o+=rX(-150,242,300,64,264,'url(#'+id+'-glass)');
+    o+=line([-150,64,272],[-150,264,272],'#141312',4);
+    o+=rX(-150,242,300,64,150,'url(#'+id+'-check)');
+    o+=line([-150,151,240],[-150,151,300],'#C9A35C',3);
+
+    // Back bench
+    o+=box(-150,150,0,46,0,50,{top:C.benchTop,front:C.benchFront,side:C.benchSide});
+    var seatCol={a:'#A8782E',b:'url(#'+id+'-check)',c:'#6A2629'}[opt];
+    var seatFront={a:'#7E5820',b:'#4F1D20',c:'#4A1A1D'}[opt];
+    o+=box(-147,147,46,53,2,48,{top:seatCol,front:seatFront,side:seatFront});
+    if(opt==='a'){
+      var l=P(-146,79,10), r2=P(146,61,10);
+      o+='<rect x="'+f(l[0])+'" y="'+f(l[1])+'" width="'+f(r2[0]-l[0])+'" height="'+f(r2[1]-l[1])+'" rx="'+f((r2[1]-l[1])/2)+'" fill="url(#'+id+'-leather)"/>';
+    }
+    if(opt==='b'){
+      o+=box(-147,147,53,94,0,11,{top:'#3A4A5C',front:'#26323F',side:'#1E2833'});
+      for(var cx=-132;cx<147;cx+=15){o+=line([cx,55,11],[cx,92,11],'#18212B',1.6);}
+    }
+    if(opt==='c'){
+      var cushions=[[-118,'url(#'+id+'-paisley)',-6],[-66,'#2F4A3A',4],[-14,'url(#'+id+'-tap)',-3],[42,'url(#'+id+'-stripe)',5],[96,'#2F3D4B',-4]];
+      cushions.forEach(function(cu){
+        var a=P(cu[0],90,12), b=P(cu[0]+40,53,12);
+        o+='<rect x="'+f(a[0])+'" y="'+f(a[1])+'" width="'+f(b[0]-a[0])+'" height="'+f(b[1]-a[1])+'" rx="'+f(9)+'" fill="'+cu[1]+'" transform="rotate('+cu[2]+' '+f((a[0]+b[0])/2)+' '+f(b[1])+')"/>';
+      });
+    }
+
+    // Side benches
+    [-1,1].forEach(function(sd){
+      var xin=sd*100, xout=sd*150;
+      var x0=Math.min(xin,xout), x1=Math.max(xin,xout);
+      o+=box(x0,x1,0,46,0,232,{top:C.benchTop,front:C.benchFront,side:C.benchSide});
+      var cx0=sd<0?-147:103, cx1=sd<0?-103:147;
+      o+=box(cx0,cx1,46,53,50,229,{top:seatCol,front:seatFront,side:seatFront});
+      if(opt==='a'){
+        var xb=sd*141;
+        o+=poly([[xb,61,52],[xb,61,226],[xb,79,226],[xb,79,52]],'url(#'+id+'-leather)');
+      }
+      if(opt==='b'){
+        var bx0=sd<0?-150:139, bx1=sd<0?-139:150;
+        o+=box(bx0,bx1,53,94,50,228,{top:'#3A4A5C',front:'#26323F',side:'#2B3949'});
+        for(var cz=62;cz<228;cz+=16){o+=line([sd*139,55,cz],[sd*139,92,cz],'#18212B',1.4);}
+      }
+    });
+
+    // Tables
+    [-46,46].forEach(function(tx){
+      var Z=112, H=72;
+      o+=hEll(tx,0,Z,20,'#1A1410')+hEll(tx,2.5,Z,18,'#3A2C1C');
+      var a=P(tx-2.6,2,Z), b=P(tx+2.6,H-3,Z);
+      o+='<rect x="'+f(a[0])+'" y="'+f(b[1])+'" width="'+f(b[0]-a[0])+'" height="'+f(a[1]-b[1])+'" fill="url(#'+id+'-brassV)"/>';
+      o+=hEll(tx,H-3.5,Z,30,'#3E1617')+hEll(tx,H,Z,30,'url(#'+id+'-marble)');
+      var vr=rng(tx>0?5:9), vk=sc(Z);
+      for(var v=0;v<3;v++){var vc=P(tx-20+vr()*30,H,Z-10+vr()*20);o+='<path d="M'+f(vc[0])+' '+f(vc[1])+' q '+f(12*vk)+' '+f(-2*vk)+' '+f(22*vk)+' '+f(3*vk)+'" stroke="#C7A29A" stroke-width=".9" fill="none" opacity=".6"/>';}
+      var cup=P(tx+(tx<0?8:-10),H,Z+4), ck=sc(Z+4);
+      o+='<ellipse cx="'+f(cup[0])+'" cy="'+f(cup[1])+'" rx="'+f(7*ck)+'" ry="'+f(2.4*ck)+'" fill="#EDE6D6"/>';
+      o+='<rect x="'+f(cup[0]-4*ck)+'" y="'+f(cup[1]-8*ck)+'" width="'+f(8*ck)+'" height="'+f(7*ck)+'" rx="'+f(1.5*ck)+'" fill="#F4EEE2"/>';
+      o+='<ellipse cx="'+f(cup[0])+'" cy="'+f(cup[1]-8*ck)+'" rx="'+f(4*ck)+'" ry="'+f(1.3*ck)+'" fill="#5A3A22"/>';
+      if(tx<0){var bkp=P(tx-12,H,Z-2), bk=sc(Z);o+='<polygon points="'+f(bkp[0])+','+f(bkp[1])+' '+f(bkp[0]+18*bk)+','+f(bkp[1]-1*bk)+' '+f(bkp[0]+20*bk)+','+f(bkp[1]+5*bk)+' '+f(bkp[0]+1*bk)+','+f(bkp[1]+6*bk)+'" fill="#2F4A3A"/>';}
+      else {var lp=P(tx+10,H,Z-6), lk2=sc(Z-6);o+='<circle cx="'+f(lp[0])+'" cy="'+f(lp[1]-8*lk2)+'" r="'+f(28*lk2)+'" fill="url(#'+id+'-glow)"/><rect x="'+f(lp[0]-3*lk2)+'" y="'+f(lp[1]-14*lk2)+'" width="'+f(6*lk2)+'" height="'+f(11*lk2)+'" rx="'+f(2*lk2)+'" fill="#E9B970" opacity=".9"/><rect x="'+f(lp[0]-3.5*lk2)+'" y="'+f(lp[1]-3*lk2)+'" width="'+f(7*lk2)+'" height="'+f(3*lk2)+'" fill="#A9853F"/>';}
+    });
+
+    o+='<rect width="1200" height="820" fill="url(#'+id+'-vig)"/>';
+    o+='</svg>';
+    return o;
+  }
+
+  function put(elId,svgId,opt){var el=document.getElementById(elId);if(el)el.innerHTML=scene(svgId,opt);}
+  put('hero-render','h','c');
+  put('render-a','a','a');
+  put('render-b','b','b');
+  put('render-c','c','c');
+
+  // Orthographic elevation of Option C, 1 cm = 2 px, origin at bottom-left of wall
+  (function(){
+    var el=document.getElementById('elevation'); if(!el) return;
+    var ox=240, oy=640, k=2;
+    function X(x){return ox+(x+150)*k;} function Y(y){return oy-y*k;}
+    function r(x0,x1,y0,y1,a){return '<rect x="'+X(x0)+'" y="'+Y(y1)+'" width="'+(x1-x0)*k+'" height="'+(y1-y0)*k+'" '+a+'/>';}
+    var ink='stroke="var(--ink)"', thin='fill="none" stroke="var(--ink)" stroke-width="1"', hair='fill="none" stroke="var(--muted)" stroke-width=".7"';
+    var o='';
+    o+=r(-150,150,0,290,thin);
+    o+=r(-138,138,0,270,'fill="var(--ink)" fill-opacity=".09" stroke="var(--ink)" stroke-width="1"');
+    for(var i=1;i<9;i++){var gx=-138+i*276/9;o+='<line x1="'+X(gx)+'" y1="'+Y(126)+'" x2="'+X(gx)+'" y2="'+Y(270)+'" '+hair+'/>';}
+    o+=r(-150,150,0,46,'fill="var(--card)" stroke="var(--ink)" stroke-width="1.2"');
+    o+=r(-150,150,46,53,'fill="var(--oxblood)" fill-opacity=".25" stroke="var(--ink)" stroke-width="1"');
+    o+=r(-150,150,53,122,thin);
+    var pw=(292-36)/5;
+    for(var p=0;p<5;p++){var px0=-146+6+p*(pw+6);o+=r(px0,px0+pw,58,114,thin)+r(px0+4,px0+pw-4,62,110,hair);}
+    o+=r(-152,152,122,126,'fill="var(--brass)" fill-opacity=".35" stroke="var(--ink)" stroke-width="1.2"');
+    o+=r(-51,51,152,233,'fill="none" stroke="var(--ink)" stroke-width="5"')+r(-46,46,157,228,hair);
+    o+='<line x1="'+X(-46)+'" y1="'+Y(157)+'" x2="'+X(46)+'" y2="'+Y(228)+'" '+hair+' stroke-dasharray="3 4"/><line x1="'+X(-46)+'" y1="'+Y(228)+'" x2="'+X(46)+'" y2="'+Y(157)+'" '+hair+' stroke-dasharray="3 4"/>';
+    o+=r(-38,38,244,248,'fill="var(--brass)" stroke="var(--ink)" stroke-width="1"');
+    o+='<line x1="'+X(-160)+'" y1="'+Y(0)+'" x2="'+X(160)+'" y2="'+Y(0)+'" '+ink+' stroke-width="2"/>';
+    // vertical dimension string on the right
+    var dx=X(150)+46;
+    function vdim(y0,y1,label){
+      var s='<line x1="'+dx+'" y1="'+Y(y0)+'" x2="'+dx+'" y2="'+Y(y1)+'" '+ink+' stroke-width="1"/>';
+      [y0,y1].forEach(function(y){s+='<line x1="'+(dx-6)+'" y1="'+(Y(y)+6)+'" x2="'+(dx+6)+'" y2="'+(Y(y)-6)+'" '+ink+' stroke-width="1.2"/><line x1="'+(X(150)+6)+'" y1="'+Y(y)+'" x2="'+(dx+10)+'" y2="'+Y(y)+'" '+hair+'/>';});
+      s+='<text x="'+(dx+12)+'" y="'+((Y(y0)+Y(y1))/2+4)+'">'+label+'</text>';
+      return s;
+    }
+    o+=vdim(0,46,'18″')+vdim(46,122,'30″')+vdim(122,290,'≈ 5′-6″');
+    o+='<text x="'+(dx+12)+'" y="'+(Y(290)+20)+'" fill="var(--muted)">≈ 9′-6″ to ceiling, verify</text>';
+    // horizontal overall width
+    var hy=Y(290)-30;
+    o+='<line x1="'+X(-150)+'" y1="'+hy+'" x2="'+X(150)+'" y2="'+hy+'" '+ink+' stroke-width="1"/>';
+    [-150,150].forEach(function(x){o+='<line x1="'+(X(x)-6)+'" y1="'+(hy+6)+'" x2="'+(X(x)+6)+'" y2="'+(hy-6)+'" '+ink+' stroke-width="1.2"/>';});
+    o+='<text x="'+X(0)+'" y="'+(hy-8)+'" text-anchor="middle">≈ 10′-0″ wall, verify on site</text>';
+    // left-side callouts
+    function callout(x,y,label,ty){var tx=ox-8;return '<line x1="'+X(x)+'" y1="'+Y(y)+'" x2="'+(tx+4)+'" y2="'+Y(ty)+'" '+hair+'/><circle cx="'+X(x)+'" cy="'+Y(y)+'" r="2.5" fill="var(--ink)"/><text x="'+tx+'" y="'+(Y(ty)+4)+'" text-anchor="end">'+label+'</text>';}
+    o+=callout(-30,246,'30″ brass picture light',258);
+    o+=callout(-49,200,'40″ × 32″ oil, gilt frame',205);
+    o+=callout(-120,124,'5″ oak ledge',138);
+    o+=callout(-110,90,'raised-panel wainscot',92);
+    o+=callout(-130,50,'velvet seat cushion',58);
+    o+=callout(-130,20,'existing oak bench',20);
+    o+='<text x="'+X(0)+'" y="'+(oy+30)+'" text-anchor="middle" fill="var(--muted)">BACK WALL ELEVATION · OPTION C · NTS</text>';
+    el.innerHTML=o;
+  })();
+})();
+</script>
